@@ -1,0 +1,15 @@
+spring:
+    datasource:
+        driverClassName: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/cloudnote?useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root
+
+mybatis:
+    type-aliases-package: cn.edu.bigc.cloudnote.entity
+    mapper-locations: mapper/*.xml
+    configuration:
+        map-underscore-to-camel-case: true
+
+server:
+    port: 8080
