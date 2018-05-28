@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.bigc.cloudnote.mapper.UserPOMapper">
+
+    <!-- result map define -->
+    <resultMap id="result" type="cn.edu.bigc.cloudnote.model.UserPO">
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userTypeId" column="user_type_id"/>
+    </resultMap>
+
+    <!-- base sql -->
+    <sql id="base_column_list">
+        user_id,
+        user_name,
+        user_password,
+        user_type_id
+    </sql>
+
+    <insert
+        id="insert"
+        useGeneratedKeys="true"
+        keyProperty="userId"
+        parameterType="cn.edu.bigc.cloudnote.model.UserPO">
+
+        INSERT INTO cloudnote_user (user_name, user_password, user_type_id)
+        VALUES (#{userName}, #{userPassword}, #{userTypeId})
+
+    </insert>
+
+    <update
+        id="update"
+        parameterType="cn.edu.bigc.cloudnote.model.UserPO"
+        flushCache="true">
+
+        UPDATE cloudnote_user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword},
+            </if>
+            <if test="userTypeId != null">
+                user_type_id = #{userTypeId},
+            </if>
+        </set>
+        WHERE user_id = #{userId}
+
+    </update>
+
+    <!-- select by PK -->
+    <select id="select"
+        resultMap="result"
+        parameterType="java.lang.Integer">
+
+        SELECT
+        <include refid="base_column_list" />
+        FROM cloudnote_user
+        WHERE user_id = #{id}
+
+    </select>
+
+    <select
+        id="selectAll"
+        resultMap="result">
+
+        SELECT
+        <include refid="base_column_list" />
+        FROM cloudnote_user
+
+    </select>
+
+    <delete id="delete"
+        parameterType="java.lang.Integer">
+
+        DELETE FROM cloudnote_user
+        WHERE user_id = #{id}
+
+    </delete>
+
+</mapper>

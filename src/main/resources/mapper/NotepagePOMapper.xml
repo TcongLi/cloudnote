@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.bigc.cloudnote.mapper.NotepagePOMapper">
+
+    <!-- result map define -->
+    <resultMap id="result" type="cn.edu.bigc.cloudnote.model.NotepagePO">
+        <result property="notepageId" column="notepage_id"/>
+        <result property="notebookId" column="notebook_id"/>
+        <result property="ownerId" column="owner_id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="deleted" column="is_deleted"/>
+        <result property="stared" column="is_stared"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <!-- base sql -->
+    <sql id="base_column_list">
+        notepage_id,
+        notebook_id,
+        owner_id,
+        title,
+        content,
+        is_deleted,
+        is_stared,
+        created_at,
+        updated_at
+    </sql>
+
+    <insert
+        id="insert"
+        useGeneratedKeys="true"
+        keyProperty="notepageId"
+        parameterType="cn.edu.bigc.cloudnote.model.NotepagePO">
+
+        INSERT INTO cloudnote_notepage (
+        notebook_id,
+        owner_id,
+        title,
+        content
+        <if test="createdAt != null">
+            , created_at
+        </if>
+        ) VALUES (
+        #{notebookId},
+        #{ownerId},
+        #{title},
+        #{content}
+        <if test="createdAt != null">
+           , #{createdAt}
+        </if>
+        )
+
+    </insert>
+
+    <update
+        id="update"
+        parameterType="cn.edu.bigc.cloudnote.model.NotepagePO"
+        flushCache="true">
+
+        UPDATE cloudnote_notepage
+        <set>
+            <if test="notebookId != null">
+                notebook_id = #{notebookId},
+            </if>
+            <if test="ownerId != null">
+                owner_id = #{ownerId},
+            </if>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="deleted != null">
+                is_deleted = #{deleted},
+            </if>
+            <if test="stared != null">
+                is_stared = #{deleted},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt}
+            </if>
+        </set>
+        WHERE notepage_id = #{notepageId}
+
+    </update>
+
+    <!-- select by PK -->
+    <select id="select"
+        resultMap="result"
+        parameterType="java.lang.Integer">
+
+        SELECT
+        <include refid="base_column_list" />
+        FROM cloudnote_notepage
+        WHERE notepage_id = #{id}
+
+    </select>
+
+    <select
+        id="selectAll"
+        resultMap="result">
+
+        SELECT
+        <include refid="base_column_list" />
+        FROM cloudnote_notepage
+
+    </select>
+
+    <delete id="delete"
+        parameterType="java.lang.Integer">
+
+        DELETE FROM cloudnote_notepage
+        WHERE notepage_id = #{id}
+
+    </delete>
+
+</mapper>
