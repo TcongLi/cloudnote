@@ -80,7 +80,7 @@
                 is_deleted = #{deleted},
             </if>
             <if test="stared != null">
-                is_stared = #{deleted},
+                is_stared = #{stared},
             </if>
             <if test="updatedAt != null">
                 updated_at = #{updatedAt}

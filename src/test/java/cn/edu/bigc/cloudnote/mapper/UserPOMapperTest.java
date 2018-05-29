@@ -31,11 +31,11 @@ public class UserPOMapperTest {
 
     @Test
     public void insert() {
-        mapper.insert(new UserPO(null, "WillyWonka", "2qe3qq3eq", "3"));
+        mapper.insert(new UserPO(null, "WillyWonka", "2qe3qq3eq", 3));
     }
 
     @Test
     public void update() {
-        mapper.update(new UserPO(2, null, "123456789", "4"));
+        mapper.update(new UserPO(2, null, "123456789", 4));
     }
 }
