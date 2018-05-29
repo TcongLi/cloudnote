@@ -15,5 +15,5 @@ public class UserPO {
 
     private String userPassword;
 
-    private String userTypeId;
+    private Integer userTypeId;
 }
