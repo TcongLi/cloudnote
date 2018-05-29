@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.bigc.cloudnote.mapper.GroupNotepagePOMapper">
+
+    <!-- result map define -->
+    <resultMap id="result" type="cn.edu.bigc.cloudnote.model.GroupNotepagePO">
+        <result property="id" column="group_notepage_id"/>
+        <result property="groupId" column="groups_id"/>
+        <result property="notepageId" column="notepage_id"/>
+    </resultMap>
+
+    <!-- base sql -->
+    <sql id="base_column_list">
+        group_notepage_id,
+        groups_id,
+        notepage_id
+    </sql>
+
+    <insert
+        id="insert"
+        useGeneratedKeys="true"
+        keyProperty="id"
+        parameterType="cn.edu.bigc.cloudnote.model.GroupNotepagePO">
+
+        INSERT INTO cloudnote_group_notepage (groups_id, notepage_id)
+        VALUES (#{groupId}, #{notepageId})
+
+    </insert>
+
+    <update
+        id="update"
+        parameterType="cn.edu.bigc.cloudnote.model.GroupNotepagePO"
+        flushCache="true">
+
+        UPDATE cloudnote_group_notepage SET
+        groups_id = #{groupId},
+        notepage_id = #{notepageId}
+        WHERE group_notepage_id = #{id}
+
+    </update>
+
+    <!-- select by PK -->
+    <select id="select"
+        resultMap="result"
+        parameterType="java.lang.Integer">
+
+        SELECT
+        <include refid="base_column_list" />
+        FROM cloudnote_group_notepage
+        WHERE group_notepage_id = #{id}
+
+    </select>
+
+    <select
+        id="selectAll"
+        resultMap="result">
+
+        SELECT
+        <include refid="base_column_list" />
+        FROM cloudnote_group_notepage
+
+    </select>
+
+    <delete id="delete"
+        parameterType="java.lang.Integer">
+
+        DELETE FROM cloudnote_group_notepage
+        WHERE group_notepage_id = #{id}
+
+    </delete>
+
+</mapper>

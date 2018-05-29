@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.edu.bigc.cloudnote.mapper.GroupPOMapper">
+
+    <!-- result map define -->
+    <resultMap id="result" type="cn.edu.bigc.cloudnote.model.GroupPO">
+        <result property="groupId" column="groups_id"/>
+        <result property="ownerId" column="group_owner_id"/>
+        <result property="groupName" column="group_name"/>
+        <result property="groupDesc" column="group_desc"/>
+    </resultMap>
+
+    <!-- base sql -->
+    <sql id="base_column_list">
+        groups_id,
+        group_owner_id,
+        group_name,
+        group_desc
+    </sql>
+
+    <insert
+        id="insert"
+        useGeneratedKeys="true"
+        keyProperty="groupId"
+        parameterType="cn.edu.bigc.cloudnote.model.GroupPO">
+
+        INSERT INTO cloudnote_group (group_owner_id, group_name, group_desc) VALUES (#{ownerId}, #{groupName}, #{groupDesc})
+
+    </insert>
+
+    <update
+        id="update"
+        parameterType="cn.edu.bigc.cloudnote.model.GroupPO"
+        flushCache="true">
+
+        UPDATE cloudnote_group
+        <set>
+            <if test="ownerId != null">
+                group_owner_id = #{ownerId},
+            </if>
+            <if test="groupName != null">
+                group_name = #{groupName},
+            </if>
+            <if test="groupDesc != null">
+                group_desc = #{groupDesc}
+            </if>
+        </set>
+        WHERE groups_id = #{groupId}
+
+    </update>
+
+    <!-- select by PK -->
+    <select id="select"
+        resultMap="result"
+        parameterType="java.lang.Integer">
+
+        SELECT
+        <include refid="base_column_list" />
+        FROM cloudnote_group
+        WHERE groups_id = #{id}
+
+    </select>
+
+    <select
+        id="selectAll"
+        resultMap="result">
+
+        SELECT
+        <include refid="base_column_list" />
+        FROM cloudnote_group
+
+    </select>
+
+    <delete id="delete"
+        parameterType="java.lang.Integer">
+
+        DELETE FROM cloudnote_group
+        WHERE groups_id = #{id}
+
+    </delete>
+
+</mapper>
