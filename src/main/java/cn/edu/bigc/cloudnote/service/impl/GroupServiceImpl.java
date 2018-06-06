@@ -1,13 +1,7 @@
 package cn.edu.bigc.cloudnote.service.impl;
 
-import cn.edu.bigc.cloudnote.mapper.GroupMemberPOMapper;
-import cn.edu.bigc.cloudnote.mapper.GroupNotepagePOMapper;
-import cn.edu.bigc.cloudnote.mapper.GroupPOMapper;
-import cn.edu.bigc.cloudnote.mapper.UserPOMapper;
-import cn.edu.bigc.cloudnote.model.GroupMemberPO;
-import cn.edu.bigc.cloudnote.model.GroupNotepagePO;
-import cn.edu.bigc.cloudnote.model.GroupPO;
-import cn.edu.bigc.cloudnote.model.UserPO;
+import cn.edu.bigc.cloudnote.mapper.*;
+import cn.edu.bigc.cloudnote.model.*;
 import cn.edu.bigc.cloudnote.service.GroupService;
 import lombok.experimental.var;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +29,9 @@ public class GroupServiceImpl implements GroupService {
 
     @Autowired
     private GroupNotepagePOMapper groupNotepagePOMapper;
+
+    @Autowired
+    private NotepagePOMapper notepagePOMapper;
 
     @Override
     public GroupPO getGroup(Integer groupId) {
@@ -151,5 +148,16 @@ public class GroupServiceImpl implements GroupService {
         }
         log.info("用户 {} 将笔记页 {} 从小组 {} 取消共享", userId, notepageId, groupId);
         groupNotepagePOMapper.delete(groupNotepage.get().getId());
+    }
+
+    @Override
+    public List<NotepagePO> getAllNotepages(Integer groupId) {
+        var groupNotepages = groupNotepagePOMapper.selectAll();
+        if (groupNotepages == null) {
+            return null;
+        }
+        return groupNotepages.stream().filter(it -> it.getGroupId().equals(groupId))
+                .map(it -> notepagePOMapper.select(it.getNotepageId()))
+                .collect(Collectors.toList());
     }
 }

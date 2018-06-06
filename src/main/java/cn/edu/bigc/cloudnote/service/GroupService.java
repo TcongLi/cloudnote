@@ -1,6 +1,7 @@
 package cn.edu.bigc.cloudnote.service;
 
 import cn.edu.bigc.cloudnote.model.GroupPO;
+import cn.edu.bigc.cloudnote.model.NotepagePO;
 import cn.edu.bigc.cloudnote.model.UserPO;
 
 import java.util.List;
@@ -81,4 +82,11 @@ public interface GroupService {
      * @param groupId 小组 id
      */
     void revokeNotepage(Integer userId, Integer notepageId, Integer groupId);
+
+    /**
+     * 查找所有组内笔记页
+     * @param groupId 组 id
+     * @return 笔记页列表
+     */
+    List<NotepagePO> getAllNotepages(Integer groupId);
 }

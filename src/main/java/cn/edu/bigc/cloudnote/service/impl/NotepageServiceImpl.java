@@ -14,7 +14,8 @@ import java.util.stream.Collectors;
 /**
  * Created by TiancongLi(tiancong.li@hotmail.com) on 2018/5/29.
  */
-@Service @Slf4j
+@Service
+@Slf4j
 public class NotepageServiceImpl implements NotepageService {
     @Autowired
     private NotepagePOMapper mapper;

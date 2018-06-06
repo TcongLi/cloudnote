@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/users")
 public class AccountController {
     @Autowired
     private AccountService service;
 
-    @PostMapping("/users/signup")
+    @PostMapping("/signup")
     Integer signUp(UserPO user) {
         return service.signUp(user);
     }
 
-    @GetMapping("/users/signin")
+    @GetMapping("/signin")
     UserPO signIn(@RequestParam("username") String username, @RequestParam("password") String password) {
         return service.signIn(username, password);
     }
