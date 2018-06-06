@@ -4,9 +4,6 @@ import cn.edu.bigc.cloudnote.model.NotepagePO;
 
 import java.util.List;
 
-/**
- * Created by TiancongLi(tiancong.li@hotmail.com) on 2018/5/29.
- */
 public interface NotepageService {
     /**
      * 查找该笔记本的所有笔记页

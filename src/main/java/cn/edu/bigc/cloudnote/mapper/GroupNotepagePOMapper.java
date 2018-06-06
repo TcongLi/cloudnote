@@ -4,9 +4,6 @@ import cn.edu.bigc.cloudnote.model.GroupNotepagePO;
 
 import java.util.List;
 
-/**
- * Created by TiancongLi(tiancong.li@hotmail.com) on 2018/5/28.
- */
 public interface GroupNotepagePOMapper extends BaseMapper<GroupNotepagePO> {
     @Override
     GroupNotepagePO select(Integer id);

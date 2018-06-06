@@ -3,7 +3,6 @@ package cn.edu.bigc.cloudnote.controller;
 import cn.edu.bigc.cloudnote.model.GroupPO;
 import cn.edu.bigc.cloudnote.model.UserPO;
 import cn.edu.bigc.cloudnote.service.GroupService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,27 +38,27 @@ public class GroupController {
         return groupService.createGroup(po);
     }
     @PutMapping("/join")
-    public void joinGroup(@Param("userId") Integer userId, @Param("groupId") Integer groupId) {
+    public void joinGroup(@RequestParam("userId") Integer userId, @RequestParam("groupId") Integer groupId) {
         groupService.joinGroup(userId, groupId);
     }
 
     @PutMapping("/exit")
-    public void exitGroup(@Param("userId") Integer userId, @Param("groupId") Integer groupId) {
+    public void exitGroup(@RequestParam("userId") Integer userId, @RequestParam("groupId") Integer groupId) {
         groupService.exitGroup(userId, groupId);
     }
 
     @PutMapping("/dismiss")
-    public void dissmissGroup(@Param("userId") Integer userId, @Param("groupId") Integer groupId) {
+    public void dissmissGroup(@RequestParam("userId") Integer userId, @RequestParam("groupId") Integer groupId) {
         groupService.dissmissGroup(userId, groupId);
     }
 
     @PutMapping("/share")
-    public void shareNotepage(@Param("userId") Integer userId, @Param("groupId") Integer groupId, @Param("notepageId") Integer notepageId) {
+    public void shareNotepage(@RequestParam("userId") Integer userId, @RequestParam("groupId") Integer groupId, @RequestParam("notepageId") Integer notepageId) {
         groupService.shareNotepage(userId, groupId, notepageId);
     }
 
     @PutMapping("/revoke")
-    public void revokeNotepage(@Param("userId") Integer userId, @Param("groupId") Integer groupId, @Param("notepageId") Integer notepageId) {
+    public void revokeNotepage(@RequestParam("userId") Integer userId, @RequestParam("groupId") Integer groupId, @RequestParam("notepageId") Integer notepageId) {
         groupService.revokeNotepage(userId, groupId, notepageId);
     }
 }

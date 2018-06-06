@@ -11,9 +11,6 @@ import java.time.Instant;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by TiancongLi(tiancong.li@hotmail.com) on 2018/5/28.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class NotebookPOMapperTest {

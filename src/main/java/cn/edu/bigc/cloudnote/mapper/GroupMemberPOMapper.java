@@ -4,9 +4,6 @@ import cn.edu.bigc.cloudnote.model.GroupMemberPO;
 
 import java.util.List;
 
-/**
- * Created by TiancongLi(tiancong.li@hotmail.com) on 2018/5/28.
- */
 public interface GroupMemberPOMapper extends BaseMapper<GroupMemberPO> {
     @Override
     GroupMemberPO select(Integer id);

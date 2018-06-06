@@ -28,4 +28,9 @@ public class AccountController {
     List<UserTypePO> getAllUserTypes() {
         return service.getAllUserTypes();
     }
+
+    @PutMapping("/promote")
+    void promote(@RequestParam("userId") Integer userId, @RequestParam("typeId") Integer typeId) {
+        service.promote(userId, typeId);
+    }
 }

@@ -5,9 +5,6 @@ import cn.edu.bigc.cloudnote.model.UserTypePO;
 
 import java.util.List;
 
-/**
- * Created by TiancongLi(tiancong.li@hotmail.com) on 2018/5/29.
- */
 public interface AccountService {
     /**
      * 登陆

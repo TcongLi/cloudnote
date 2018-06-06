@@ -12,9 +12,6 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-/**
- * Created by TiancongLi(tiancong.li@hotmail.com) on 2018/5/29.
- */
 @Service
 @Slf4j
 public class GroupServiceImpl implements GroupService {

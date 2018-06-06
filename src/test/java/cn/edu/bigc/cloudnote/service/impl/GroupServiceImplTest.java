@@ -10,9 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by TiancongLi(tiancong.li@hotmail.com) on 2018/5/29.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GroupServiceImplTest {

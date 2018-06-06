@@ -4,9 +4,6 @@ import cn.edu.bigc.cloudnote.model.NotebookPO;
 
 import java.util.List;
 
-/**
- * Created by TiancongLi(tiancong.li@hotmail.com) on 2018/5/29.
- */
 public interface NotebookService{
     /**
      * 查看一个用户所有的笔记本, 不包含删除的
