@@ -75,12 +75,36 @@ Vue.component('notepage-list', {
         addNotepage() {
             let ownerId = state.currentUser.userId;
             let notebookId = state.currentNotebook.notebookId;
-            ax.post(`/notepages/${notebookId}`, {
+            ax.post(`/notepages/notebooks/${notebookId}`, {
                 ownerId: ownerId,
                 notebookId: notebookId,
                 title: '',
                 content: ''
             }).then((res) => {
+                let currentNotepageId = res.data;
+                let currentNotebookId = state.currentNotebook.notebookId;
+
+                app.getAllNotebooks();
+
+                state.currentNotebook = null;
+                state.notepages = [];
+                state.currentNotepage = null;
+
+                for (let i = 0; i < state.notebooks.length; i++) {
+                    if (state.notebooks[i].notebookId === currentNotebookId) {
+                        state.currentNotebook = state.notebooks[i];
+                    }
+                }
+
+                ax.get(`/notepages/notebooks/${state.currentNotebook.notebookId}`).then((res) => {
+                    state.notepages = res.data;
+                    for (let i = 0; i < state.notepages.length; i++) {
+                        if (state.notepages[i].notepageId === currentNotepageId) {
+                            state.currentNotepage = state.notepages[i];
+                        }
+                    }
+                });
+
 
             });
         },
@@ -91,6 +115,12 @@ Vue.component('notepage-list', {
             } else {
                 notepage.stared = true;
             }
+
+            ax.put(`notepages/${notepage.notepageId}`, {
+                stared: notepage.stared
+            }).then((res) => {
+
+            });
         }
     }
 });

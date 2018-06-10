@@ -1,10 +1,10 @@
 Vue.component('app-header', {
     template: `
     <div style="padding-right: 20px; padding-top: 5px">
-    
+
         <!-- icon -->
         <img src="../images/notebook_icon.png" height="30px" style="margin-top: 10px; float: left"/>
-        <h1 style="color: #ffffff; margin-left: 10px; margin-top: 5px; float: left">云笔记系统</h1>
+        <h2 style="color: #ffffff; margin-left: 10px; margin-top: 5px; float: left">云笔记系统</h2>
 
         <!-- 显示当前用户名 -->
         <span v-if="state.currentUser" style="color: #ffffff; margin-right: 10px">{{ state.currentUser.userName }}</span>

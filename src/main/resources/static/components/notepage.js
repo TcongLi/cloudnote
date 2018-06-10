@@ -56,7 +56,8 @@ Vue.component('notepage', {
             let id = state.currentNotepage.notepageId;
             ax.delete(`notepages/${id}`).then((res) => {
                 let idx = state.notepages.findIndex(n => n.notepageId === id);
-                state.notepages.splice(idx, 1);
+                // state.notepages.splice(idx, 1);
+                state.notepages[idx].deleted = true;
                 state.currentNotepage = null;
                 this.$message({
                     message: '删除笔记成功',
