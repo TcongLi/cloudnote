@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Cloud Note</title>
+    <style>
+    body {
+        font-family: "Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    }
+    .el-header {
+        background-color: #13A89E;
+        text-align: right;
+    }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <el-container>
+            <el-header>
+                <app-header></app-header>
+            </el-header>
+            <el-main>
+                <app-main></app-main>
+            </el-main>
+        </el-container>
+    </div>
+
+    <!-- libs -->
+    <script src="./libs/vue.js"></script>
+    <script src="./libs/ele-index.js"></script>
+    <script src="./libs/axios.js"></script>
+
+    <!-- events -->
+    <script src="./events/events.js"></script>
+    <script src="./events/bus.js"></script>
+
+    <!-- components -->
+    <script src="./components/app-header.js"></script>
+    <script src="./components/app-main.js"></script>
+    <script src="./components/notebook-list.js"></script>
+    <script src="./components/notepage-list.js"></script>
+    <script src="./components/notepage.js"></script>
+
+    <script src="./components/app.js"></script>
+</body>
+</html>

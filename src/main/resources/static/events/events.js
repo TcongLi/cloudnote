@@ -1,0 +1,7 @@
+const events = {
+    SIGN_IN_SUCCESS: 'SIGN_IN_SUCCESS',
+    SIGN_UP_SUCCESS: 'SIGN_UP_SUCCESS',
+    SIGN_OUT: 'SIGN_OUT',
+
+    RELOAD: 'RELOAD'
+}
