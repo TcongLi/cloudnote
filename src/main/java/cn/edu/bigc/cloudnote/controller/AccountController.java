@@ -15,7 +15,7 @@ public class AccountController {
     private AccountService service;
 
     @PostMapping("/signup")
-    Integer signUp(UserPO user) {
+    Integer signUp(@RequestBody UserPO user) {
         return service.signUp(user);
     }
 
